@@ -1,0 +1,18 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: gerenciadorunidade
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gerenciadorunidade
+    username: app
+    password: app
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      show-sql: true
+
+jwt:
+  secret: 1GvM7TBBfcTdhTQTNpIV+xA7XYWThGqAST1mYDukgLs=
+#  expiration: 3600000 #1h
+  expiration: 180000 #3m
