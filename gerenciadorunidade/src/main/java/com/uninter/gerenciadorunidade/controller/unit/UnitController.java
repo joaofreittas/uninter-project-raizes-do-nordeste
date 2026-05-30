@@ -1,4 +1,4 @@
-package com.uninter.gerenciadorunidade.controller.unity;
+package com.uninter.gerenciadorunidade.controller.unit;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/units")
-public class UnityController {
+public class UnitController {
 
 }
