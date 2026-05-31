@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -78,6 +79,18 @@ public class UnitController {
     public ResponseEntity<UnitResponse> update(@PathVariable Long id,
                                                @Valid @RequestBody UpdateUnitRequest request) {
         return ResponseEntity.ok(UnitResponse.fromModel(unitService.update(id, request)));
+    }
+
+    @Operation(summary = "Desativar unidade")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Unidade desativada com sucesso",
+            content = @Content(schema = @Schema(implementation = UnitResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Unidade já está inativa", content = @Content),
+        @ApiResponse(responseCode = "404", description = "Unidade não encontrada", content = @Content)
+    })
+    @PatchMapping("/{id}/deactivate")
+    public ResponseEntity<UnitResponse> deactivate(@PathVariable Long id) {
+        return ResponseEntity.ok(UnitResponse.fromModel(unitService.deactivate(id)));
     }
 
     @Operation(summary = "Remover unidade")

@@ -64,4 +64,9 @@ public class Unit {
     @OneToMany(mappedBy = "unit")
     private List<User> users;
 
+    public void deactivate() {
+        this.status = UnitStatus.INACTIVE;
+        this.updatedAt = LocalDateTime.now();
+    }
+
 }

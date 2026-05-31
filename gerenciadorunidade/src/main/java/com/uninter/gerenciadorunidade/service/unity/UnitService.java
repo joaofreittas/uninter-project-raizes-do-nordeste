@@ -25,7 +25,6 @@ public class UnitService {
             .address(request.address())
             .status(UnitStatus.ACTIVATED)
             .createdAt(now)
-            .updatedAt(now)
             .build();
         return unitRepository.save(unit);
     }
@@ -41,6 +40,7 @@ public class UnitService {
 
     public Unit update(final Long id, final UpdateUnitRequest request) {
         var existing = findById(id);
+
         var updated = Unit.builder()
             .id(existing.getId())
             .name(request.name())
@@ -49,7 +49,15 @@ public class UnitService {
             .createdAt(existing.getCreatedAt())
             .updatedAt(LocalDateTime.now())
             .build();
+
         return unitRepository.save(updated);
+    }
+
+    public Unit deactivate(final Long id) {
+        var existing = findById(id);
+        existing.deactivate();
+
+        return unitRepository.save(existing);
     }
 
     public void delete(final Long id) {

@@ -2,6 +2,7 @@ package com.uninter.gerenciadorunidade.config.auth;
 
 import com.uninter.gerenciadorunidade.controller.auth.JWTAuthFilter;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +37,8 @@ public class SecurityConfig {
                     "/v3/api-docs/**",
                     "/v3/api-docs.yaml",
                     "/swagger-ui/**",
-                    "/swagger-ui.html"
+                    "/swagger-ui.html",
+                    "/error"
                 )
                 .permitAll()
                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
@@ -45,7 +47,14 @@ public class SecurityConfig {
 
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider)
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+            .exceptionHandling(ex -> ex
+                .authenticationEntryPoint((request, response, authException) -> {
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.setContentType("application/json");
+                    response.getWriter().write("{\"status\":401,\"message\":\"Não autenticado\",\"timestamp\":\"" + java.time.LocalDateTime.now() + "\"}");
+                })
+            );
 
         return http.build();
     }
