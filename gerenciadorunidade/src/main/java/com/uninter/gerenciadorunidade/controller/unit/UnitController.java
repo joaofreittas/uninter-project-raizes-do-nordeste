@@ -1,12 +1,94 @@
 package com.uninter.gerenciadorunidade.controller.unit;
 
+import com.uninter.gerenciadorunidade.controller.unit.dto.CreateUnitRequest;
+import com.uninter.gerenciadorunidade.controller.unit.dto.UpdateUnitRequest;
+import com.uninter.gerenciadorunidade.controller.unit.dto.UnitResponse;
+import com.uninter.gerenciadorunidade.service.unity.UnitService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/units")
+@Tag(name = "Unidades", description = "Gerenciamento de unidades de negócio")
 public class UnitController {
+
+    private final UnitService unitService;
+
+    @Operation(summary = "Cadastrar nova unidade")
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "Unidade criada com sucesso",
+            content = @Content(schema = @Schema(implementation = UnitResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Dados inválidos", content = @Content)
+    })
+    @PostMapping
+    public ResponseEntity<UnitResponse> create(@Valid @RequestBody CreateUnitRequest request) {
+        return ResponseEntity
+            .status(HttpStatus.CREATED)
+            .body(UnitResponse.fromModel(unitService.create(request)));
+    }
+
+    @Operation(summary = "Listar todas as unidades")
+    @ApiResponse(responseCode = "200", description = "Lista de unidades retornada com sucesso")
+    @GetMapping
+    public ResponseEntity<List<UnitResponse>> findAll() {
+        var units = unitService.findAll().stream()
+            .map(UnitResponse::fromModel)
+            .toList();
+        return ResponseEntity.ok(units);
+    }
+
+    @Operation(summary = "Buscar unidade por ID")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Unidade encontrada",
+            content = @Content(schema = @Schema(implementation = UnitResponse.class))),
+        @ApiResponse(responseCode = "404", description = "Unidade não encontrada", content = @Content)
+    })
+    @GetMapping("/{id}")
+    public ResponseEntity<UnitResponse> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(UnitResponse.fromModel(unitService.findById(id)));
+    }
+
+    @Operation(summary = "Atualizar unidade")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Unidade atualizada com sucesso",
+            content = @Content(schema = @Schema(implementation = UnitResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Dados inválidos", content = @Content),
+        @ApiResponse(responseCode = "404", description = "Unidade não encontrada", content = @Content)
+    })
+    @PutMapping("/{id}")
+    public ResponseEntity<UnitResponse> update(@PathVariable Long id,
+                                               @Valid @RequestBody UpdateUnitRequest request) {
+        return ResponseEntity.ok(UnitResponse.fromModel(unitService.update(id, request)));
+    }
+
+    @Operation(summary = "Remover unidade")
+    @ApiResponses({
+        @ApiResponse(responseCode = "204", description = "Unidade removida com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Unidade não encontrada", content = @Content)
+    })
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        unitService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
