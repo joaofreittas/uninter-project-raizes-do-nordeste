@@ -54,7 +54,7 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity
             .status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro interno no servidor"));
+            .body(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage()));
     }
 
     public record ErrorResponse(int status, String message, LocalDateTime timestamp) {

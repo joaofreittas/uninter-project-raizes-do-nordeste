@@ -32,6 +32,10 @@ public class MenuService {
         var unit = unitRepository.findById(request.unitId())
             .orElseThrow(() -> new EntityNotFoundException("Unit not found: " + request.unitId()));
 
+        if (!menuRepository.findByUnitId(request.unitId()).isEmpty()) {
+            throw new IllegalArgumentException("Unit " + request.unitId() + " already has a menu");
+        }
+
         var now = LocalDateTime.now();
         var menu = Menu.builder()
             .unit(unit)
@@ -74,6 +78,8 @@ public class MenuService {
             .build();
 
         menuProductRepository.save(menuProduct);
+        menu.updateNow();
+        menuRepository.save(menu);
 
         return menuRepository.findById(id).orElseThrow();
     }

@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "menus")
+@Table(name = "menus", uniqueConstraints = @UniqueConstraint(name = "uk_menus_unit_id", columnNames = "unit_id"))
 public class Menu {
 
     @Id
@@ -42,5 +43,9 @@ public class Menu {
 
     @OneToMany(mappedBy = "menu")
     private List<MenuProduct> menuProducts;
+
+    public void updateNow() {
+        updatedAt = LocalDateTime.now();
+    }
 
 }
