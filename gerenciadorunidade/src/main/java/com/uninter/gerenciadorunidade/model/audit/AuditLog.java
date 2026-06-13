@@ -1,4 +1,4 @@
-package com.uninter.gerenciadorunidade.model;
+package com.uninter.gerenciadorunidade.model.audit;
 
 import com.uninter.gerenciadorunidade.audit.AuditAction;
 import jakarta.persistence.Column;
@@ -38,6 +38,10 @@ public class AuditLog {
     @Column(nullable = false)
     private String entity;
 
+    @Column
+    private Long entityId;
+
     @Column(nullable = false)
     private LocalDateTime occurredAt;
+
 }

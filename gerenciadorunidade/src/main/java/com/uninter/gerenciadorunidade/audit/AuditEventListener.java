@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.audit;
 
-import com.uninter.gerenciadorunidade.model.AuditLog;
+import com.uninter.gerenciadorunidade.model.audit.AuditLog;
 import com.uninter.gerenciadorunidade.repository.AuditLogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
@@ -20,6 +20,7 @@ public class AuditEventListener {
             .userEmail(event.userEmail())
             .action(event.action())
             .entity(event.entity())
+            .entityId(event.entityId())
             .occurredAt(event.occurredAt())
             .build();
 

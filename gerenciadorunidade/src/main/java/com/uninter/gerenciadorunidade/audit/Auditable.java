@@ -13,4 +13,6 @@ public @interface Auditable {
 
     String entity() default "";
 
+    int entityIdArgIndex() default 0;
+
 }

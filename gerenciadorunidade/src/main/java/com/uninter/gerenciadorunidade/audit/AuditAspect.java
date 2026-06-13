@@ -31,7 +31,8 @@ public class AuditAspect {
     private void publishEvent(ProceedingJoinPoint joinPoint, Auditable auditable) {
         var userEmail = resolveUserEmail();
         var entity = resolveEntityName(joinPoint, auditable);
-        eventPublisher.publishEvent(new AuditEvent(userEmail, auditable.action(), entity, LocalDateTime.now()));
+        var entityId = resolveEntityId(joinPoint, auditable);
+        eventPublisher.publishEvent(new AuditEvent(userEmail, auditable.action(), entity, entityId, LocalDateTime.now()));
     }
 
     private String resolveUserEmail() {
@@ -47,6 +48,18 @@ public class AuditAspect {
             return auditable.entity();
         }
         return joinPoint.getTarget().getClass().getSimpleName();
+    }
+
+    private Long resolveEntityId(ProceedingJoinPoint joinPoint, Auditable auditable) {
+        if (auditable.action() == AuditAction.CREATE) {
+            return null;
+        }
+        var args = joinPoint.getArgs();
+        var index = auditable.entityIdArgIndex();
+        if (index < args.length && args[index] instanceof Long id) {
+            return id;
+        }
+        return null;
     }
 
 }

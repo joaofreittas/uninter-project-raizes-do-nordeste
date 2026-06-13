@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.service.audit;
 
-import com.uninter.gerenciadorunidade.model.AuditLog;
+import com.uninter.gerenciadorunidade.model.audit.AuditLog;
 import com.uninter.gerenciadorunidade.repository.AuditLogRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

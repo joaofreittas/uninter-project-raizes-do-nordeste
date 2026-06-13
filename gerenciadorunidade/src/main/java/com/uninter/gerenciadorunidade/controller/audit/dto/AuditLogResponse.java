@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.controller.audit.dto;
 
 import com.uninter.gerenciadorunidade.audit.AuditAction;
-import com.uninter.gerenciadorunidade.model.AuditLog;
+import com.uninter.gerenciadorunidade.model.audit.AuditLog;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
@@ -12,6 +12,7 @@ public record AuditLogResponse(
     String userEmail,
     AuditAction action,
     String entity,
+    Long entityId,
     LocalDateTime occurredAt
 ) {
 
@@ -21,6 +22,7 @@ public record AuditLogResponse(
             .userEmail(auditLog.getUserEmail())
             .action(auditLog.getAction())
             .entity(auditLog.getEntity())
+            .entityId(auditLog.getEntityId())
             .occurredAt(auditLog.getOccurredAt())
             .build();
     }
