@@ -23,7 +23,6 @@ public class ProductService {
             .name(request.name())
             .price(request.price())
             .createdAt(now)
-            .updatedAt(now)
             .build();
 
         return productRepository.save(product);

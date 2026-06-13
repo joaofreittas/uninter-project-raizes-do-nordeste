@@ -35,7 +35,6 @@ public class PromotionService {
             .endDate(request.endDate())
             .reward(request.reward())
             .createdAt(now)
-            .updatedAt(now)
             .build();
 
         return promotionRepository.save(promotion);

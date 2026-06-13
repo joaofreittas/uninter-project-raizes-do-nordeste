@@ -41,7 +41,6 @@ public class EmployeeService {
             .birthDate(request.birthDate())
             .type(request.type())
             .createdAt(now)
-            .updatedAt(now)
             .build();
 
         return employeeRepository.save(employee);
@@ -81,7 +80,6 @@ public class EmployeeService {
             .rating(request.rating())
             .comment(request.comment())
             .createdAt(now)
-            .updatedAt(now)
             .build();
 
         return evaluationRepository.save(evaluation);

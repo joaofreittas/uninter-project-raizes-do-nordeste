@@ -9,8 +9,8 @@ spring:
     password: app
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 
 jwt:
   secret: 1GvM7TBBfcTdhTQTNpIV+xA7XYWThGqAST1mYDukgLs=
-  expiration: 180000 #3m
+  expiration: 604800000 #7d
