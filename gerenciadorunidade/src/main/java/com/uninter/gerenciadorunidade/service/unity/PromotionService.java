@@ -1,5 +1,7 @@
 package com.uninter.gerenciadorunidade.service.unity;
 
+import com.uninter.gerenciadorunidade.audit.AuditAction;
+import com.uninter.gerenciadorunidade.audit.Auditable;
 import com.uninter.gerenciadorunidade.controller.promotion.dto.CreatePromotionRequest;
 import com.uninter.gerenciadorunidade.controller.promotion.dto.UpdatePromotionRequest;
 import com.uninter.gerenciadorunidade.model.unit.Promotion;
@@ -19,6 +21,7 @@ public class PromotionService {
     private final PromotionRepository promotionRepository;
     private final UnitRepository unitRepository;
 
+    @Auditable(action = AuditAction.CREATE)
     public Promotion create(final CreatePromotionRequest request) {
         if (!request.startDate().isBefore(request.endDate())) {
             throw new IllegalArgumentException("startDate deve ser anterior a endDate");
@@ -49,6 +52,7 @@ public class PromotionService {
             .orElseThrow(() -> new EntityNotFoundException("Promotion not found: " + id));
     }
 
+    @Auditable(action = AuditAction.UPDATE)
     public Promotion update(final Long id, final UpdatePromotionRequest request) {
         if (!request.startDate().isBefore(request.endDate())) {
             throw new IllegalArgumentException("startDate deve ser anterior a endDate");
@@ -69,6 +73,7 @@ public class PromotionService {
         return promotionRepository.save(updated);
     }
 
+    @Auditable(action = AuditAction.DELETE)
     public void delete(final Long id) {
         var promotion = findById(id);
         promotionRepository.delete(promotion);

@@ -1,5 +1,7 @@
 package com.uninter.gerenciadorunidade.service.unity;
 
+import com.uninter.gerenciadorunidade.audit.AuditAction;
+import com.uninter.gerenciadorunidade.audit.Auditable;
 import com.uninter.gerenciadorunidade.controller.employee.dto.AddEvaluationRequest;
 import com.uninter.gerenciadorunidade.controller.employee.dto.CreateEmployeeRequest;
 import com.uninter.gerenciadorunidade.controller.employee.dto.UpdateEmployeeRequest;
@@ -23,6 +25,7 @@ public class EmployeeService {
     private final EvaluationRepository evaluationRepository;
     private final UnitRepository unitRepository;
 
+    @Auditable(action = AuditAction.CREATE)
     public Employee create(final CreateEmployeeRequest request) {
         var unit = unitRepository
             .findById(request.unitId())
@@ -55,6 +58,7 @@ public class EmployeeService {
             .orElseThrow(() -> new EntityNotFoundException("Employee not found: " + id));
     }
 
+    @Auditable(action = AuditAction.UPDATE)
     public Employee update(final Long id, final UpdateEmployeeRequest request) {
         var existing = findById(id);
         var updated = Employee.builder()
@@ -72,6 +76,7 @@ public class EmployeeService {
         return employeeRepository.save(updated);
     }
 
+    @Auditable(action = AuditAction.CREATE, entity = "Evaluation")
     public Evaluation addEvaluation(final Long employeeId, final AddEvaluationRequest request) {
         var employee = findById(employeeId);
         var now = LocalDateTime.now();
@@ -85,6 +90,7 @@ public class EmployeeService {
         return evaluationRepository.save(evaluation);
     }
 
+    @Auditable(action = AuditAction.DELETE)
     public void delete(final Long id) {
         var employee = findById(id);
         employeeRepository.delete(employee);
