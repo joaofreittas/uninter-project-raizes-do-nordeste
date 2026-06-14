@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,7 @@ public class PromotionController {
         @ApiResponse(responseCode = "404", description = "Unidade não encontrada", content = @Content)
     })
     @PostMapping
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<PromotionResponse> create(@Valid @RequestBody CreatePromotionRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(promotionFacade.create(request));
     }
@@ -70,6 +72,7 @@ public class PromotionController {
         @ApiResponse(responseCode = "404", description = "Promoção não encontrada", content = @Content)
     })
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<PromotionResponse> update(@PathVariable Long id,
                                                     @Valid @RequestBody UpdatePromotionRequest request) {
         return ResponseEntity.ok(promotionFacade.update(id, request));
@@ -81,6 +84,7 @@ public class PromotionController {
         @ApiResponse(responseCode = "404", description = "Promoção não encontrada", content = @Content)
     })
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         promotionFacade.delete(id);
         return ResponseEntity.noContent().build();

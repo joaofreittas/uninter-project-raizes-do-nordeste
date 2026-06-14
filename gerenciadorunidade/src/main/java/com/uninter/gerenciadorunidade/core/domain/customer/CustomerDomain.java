@@ -38,7 +38,6 @@ public class CustomerDomain {
             .lgpdAccepted(lgpdAccepted)
             .marketingAccepted(marketingAccepted != null ? marketingAccepted : Boolean.FALSE)
             .createdAt(now)
-            .updatedAt(now)
             .build();
     }
 

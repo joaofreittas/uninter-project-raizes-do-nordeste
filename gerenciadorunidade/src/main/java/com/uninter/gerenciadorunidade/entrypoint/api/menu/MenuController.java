@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,7 @@ public class MenuController {
         @ApiResponse(responseCode = "404", description = "Unidade não encontrada", content = @Content)
     })
     @PostMapping
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<MenuResponse> create(@Valid @RequestBody CreateMenuRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(menuFacade.create(request));
     }
@@ -71,6 +73,7 @@ public class MenuController {
         @ApiResponse(responseCode = "404", description = "Cardápio ou produto não encontrado", content = @Content)
     })
     @PostMapping("/{id}/products")
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<MenuResponse> addProduct(@PathVariable Long id,
                                                    @Valid @RequestBody AddProductToMenuRequest request) {
         return ResponseEntity.ok(menuFacade.addProduct(id, request));
@@ -83,6 +86,7 @@ public class MenuController {
         @ApiResponse(responseCode = "404", description = "Cardápio ou produto não encontrado", content = @Content)
     })
     @DeleteMapping("/{id}/products/{productId}")
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<MenuResponse> removeProduct(@PathVariable Long id,
                                                       @PathVariable Long productId) {
         return ResponseEntity.ok(menuFacade.removeProduct(id, productId));
@@ -94,6 +98,7 @@ public class MenuController {
         @ApiResponse(responseCode = "404", description = "Cardápio não encontrado", content = @Content)
     })
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         menuFacade.delete(id);
         return ResponseEntity.noContent().build();

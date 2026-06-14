@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -40,6 +41,7 @@ public class UnitController {
         @ApiResponse(responseCode = "400", description = "Dados inválidos", content = @Content)
     })
     @PostMapping
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<UnitResponse> create(@Valid @RequestBody CreateUnitRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(unitFacade.create(request));
     }
@@ -70,6 +72,7 @@ public class UnitController {
         @ApiResponse(responseCode = "404", description = "Unidade não encontrada", content = @Content)
     })
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<UnitResponse> update(@PathVariable Long id,
                                                @Valid @RequestBody UpdateUnitRequest request) {
         return ResponseEntity.ok(unitFacade.update(id, request));
@@ -82,6 +85,7 @@ public class UnitController {
         @ApiResponse(responseCode = "404", description = "Unidade não encontrada", content = @Content)
     })
     @PatchMapping("/{id}/deactivate")
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<UnitResponse> deactivate(@PathVariable Long id) {
         return ResponseEntity.ok(unitFacade.deactivate(id));
     }
@@ -92,6 +96,7 @@ public class UnitController {
         @ApiResponse(responseCode = "404", description = "Unidade não encontrada", content = @Content)
     })
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         unitFacade.delete(id);
         return ResponseEntity.noContent().build();
