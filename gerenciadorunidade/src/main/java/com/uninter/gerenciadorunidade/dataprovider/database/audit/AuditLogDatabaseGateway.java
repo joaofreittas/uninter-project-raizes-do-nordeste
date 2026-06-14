@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuditLogDatabaseGateway implements AuditLogGateway {
 
-    private final AuditLogJpaRepository repository;
+    private final AuditLogRepository repository;
 
     @Override
     public AuditLogDomain save(final AuditLogDomain log) {

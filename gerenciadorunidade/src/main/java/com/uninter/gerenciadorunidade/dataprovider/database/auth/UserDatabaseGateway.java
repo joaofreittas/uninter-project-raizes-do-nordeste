@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserDatabaseGateway implements UserGateway {
 
-    private final UserJpaRepository repository;
+    private final UserRepository repository;
 
     @Override
     public UserDomain save(final UserDomain user) {

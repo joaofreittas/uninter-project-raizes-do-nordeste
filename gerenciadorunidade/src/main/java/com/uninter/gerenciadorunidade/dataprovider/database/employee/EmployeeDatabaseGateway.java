@@ -2,7 +2,7 @@ package com.uninter.gerenciadorunidade.dataprovider.database.employee;
 
 import com.uninter.gerenciadorunidade.core.domain.employee.EmployeeDomain;
 import com.uninter.gerenciadorunidade.core.gateway.EmployeeGateway;
-import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitJpaRepository;
+import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +13,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EmployeeDatabaseGateway implements EmployeeGateway {
 
-    private final EmployeeJpaRepository employeeRepository;
-    private final UnitJpaRepository unitRepository;
+    private final EmployeeRepository employeeRepository;
+    private final UnitRepository unitRepository;
 
     @Override
     public EmployeeDomain save(final EmployeeDomain employee) {

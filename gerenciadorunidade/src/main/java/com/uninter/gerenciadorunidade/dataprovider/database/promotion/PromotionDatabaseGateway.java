@@ -2,7 +2,7 @@ package com.uninter.gerenciadorunidade.dataprovider.database.promotion;
 
 import com.uninter.gerenciadorunidade.core.domain.promotion.PromotionDomain;
 import com.uninter.gerenciadorunidade.core.gateway.PromotionGateway;
-import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitJpaRepository;
+import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +13,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PromotionDatabaseGateway implements PromotionGateway {
 
-    private final PromotionJpaRepository repository;
-    private final UnitJpaRepository unitRepository;
+    private final PromotionRepository repository;
+    private final UnitRepository unitRepository;
 
     @Override
     public PromotionDomain save(final PromotionDomain promotion) {

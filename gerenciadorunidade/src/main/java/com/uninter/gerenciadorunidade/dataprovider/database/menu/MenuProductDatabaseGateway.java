@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.menu;
 
 import com.uninter.gerenciadorunidade.core.gateway.MenuProductGateway;
-import com.uninter.gerenciadorunidade.dataprovider.database.product.ProductJpaRepository;
+import com.uninter.gerenciadorunidade.dataprovider.database.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class MenuProductDatabaseGateway implements MenuProductGateway {
 
-    private final MenuProductJpaRepository menuProductRepository;
-    private final MenuJpaRepository menuRepository;
-    private final ProductJpaRepository productRepository;
+    private final MenuProductRepository menuProductRepository;
+    private final MenuRepository menuRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public boolean existsById(final Long menuId, final Long productId) {

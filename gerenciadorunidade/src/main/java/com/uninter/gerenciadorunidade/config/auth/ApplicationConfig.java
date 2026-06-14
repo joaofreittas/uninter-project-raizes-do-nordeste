@@ -1,6 +1,7 @@
 package com.uninter.gerenciadorunidade.config.auth;
 
-import com.uninter.gerenciadorunidade.dataprovider.database.auth.UserJpaRepository;
+import com.uninter.gerenciadorunidade.dataprovider.database.auth.UserRepository;
+import com.uninter.gerenciadorunidade.dataprovider.database.auth.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UserJpaRepository userRepository;
+    private final UserRepository userRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {

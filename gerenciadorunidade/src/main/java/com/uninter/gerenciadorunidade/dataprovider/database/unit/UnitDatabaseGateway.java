@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UnitDatabaseGateway implements UnitGateway {
 
-    private final UnitJpaRepository repository;
+    private final UnitRepository repository;
 
     @Override
     public UnitDomain save(final UnitDomain unit) {

@@ -2,7 +2,7 @@ package com.uninter.gerenciadorunidade.dataprovider.database.menu;
 
 import com.uninter.gerenciadorunidade.core.domain.menu.MenuDomain;
 import com.uninter.gerenciadorunidade.core.gateway.MenuGateway;
-import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitJpaRepository;
+import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +13,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MenuDatabaseGateway implements MenuGateway {
 
-    private final MenuJpaRepository menuRepository;
-    private final UnitJpaRepository unitRepository;
+    private final MenuRepository menuRepository;
+    private final UnitRepository unitRepository;
 
     @Override
     public MenuDomain save(final MenuDomain menu) {

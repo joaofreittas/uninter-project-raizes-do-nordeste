@@ -2,8 +2,8 @@ package com.uninter.gerenciadorunidade.dataprovider.database.inventory;
 
 import com.uninter.gerenciadorunidade.core.domain.inventory.InventoryItemDomain;
 import com.uninter.gerenciadorunidade.core.gateway.InventoryItemGateway;
-import com.uninter.gerenciadorunidade.dataprovider.database.product.ProductJpaRepository;
-import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitJpaRepository;
+import com.uninter.gerenciadorunidade.dataprovider.database.product.ProductRepository;
+import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +14,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class InventoryItemDatabaseGateway implements InventoryItemGateway {
 
-    private final InventoryItemJpaRepository repository;
-    private final UnitJpaRepository unitRepository;
-    private final ProductJpaRepository productRepository;
+    private final InventoryItemRepository repository;
+    private final UnitRepository unitRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public InventoryItemDomain save(final InventoryItemDomain item) {

@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductDatabaseGateway implements ProductGateway {
 
-    private final ProductJpaRepository repository;
+    private final ProductRepository repository;
 
     @Override
     public ProductDomain save(final ProductDomain product) {

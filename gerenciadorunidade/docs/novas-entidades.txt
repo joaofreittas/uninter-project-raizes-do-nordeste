@@ -1,0 +1,111 @@
+Entidade: customers
+
+Representa os clientes cadastrados na plataforma.
+
+Campo	Tipo	Descrição
+_id	objectId	Identificador único do cliente.
+name	varchar	Nome completo do cliente.
+document	varchar	Documento de identificação do cliente (CPF, CNPJ, etc.).
+email	varchar	Endereço de e-mail do cliente.
+phone	varchar	Telefone de contato do cliente.
+birth_date	date	Data de nascimento do cliente.
+lgpd_accepted	boolean	Indica se o cliente aceitou os termos de LGPD.
+marketing_accepted	boolean	Indica se o cliente autorizou receber comunicações de marketing.
+created_at	timestamp	Data e hora de criação do registro.
+updated_at	timestamp	Data e hora da última atualização do registro.
+
+⸻
+
+Entidade: customer_promotions
+
+Representa as promoções atribuídas a clientes específicos.
+
+Campo	Tipo	Descrição
+_id	objectId	Identificador único do vínculo cliente-promoção.
+customer_id	objectId	Referência ao cliente associado à promoção.
+promotion_id	objectId	Referência à promoção atribuída ao cliente.
+promotion_title	varchar	Título da promoção no momento da atribuição.
+active	boolean	Indica se a promoção está ativa para o cliente.
+assigned_at	timestamp	Data e hora em que a promoção foi atribuída ao cliente.
+
+⸻
+
+Entidade: payments
+
+Representa os pagamentos realizados para pedidos.
+
+Campo	Tipo	Descrição
+_id	objectId	Identificador único do pagamento.
+order_id	objectId	Referência ao pedido associado ao pagamento.
+payment_type	varchar	Tipo de pagamento utilizado (PIX, cartão de crédito, débito, dinheiro, etc.).
+status	varchar	Status atual do pagamento.
+amount	decimal	Valor monetário do pagamento.
+gateway_transaction_id	varchar	Identificador da transação retornado pelo gateway de pagamento.
+gateway_provider	varchar	Nome do provedor do gateway de pagamento.
+created_at	timestamp	Data e hora de criação do pagamento.
+updated_at	timestamp	Data e hora da última atualização do pagamento.
+
+⸻
+
+Entidade: orders
+
+Representa os pedidos realizados pelos clientes.
+
+Campo	Tipo	Descrição
+_id	objectId	Identificador único do pedido.
+customer_id	objectId	Referência ao cliente que realizou o pedido.
+unit_id	objectId	Identificador da unidade/franquia responsável pelo pedido.
+delivery_type	varchar	Tipo de entrega do pedido (delivery, retirada, balcão, etc.).
+order_channel	varchar	Canal de origem do pedido (app, totem, balcão, site, etc.).
+status	varchar	Status atual do pedido.
+total_amount	decimal	Valor total do pedido.
+created_at	timestamp	Data e hora de criação do pedido.
+updated_at	timestamp	Data e hora da última atualização do pedido.
+
+⸻
+
+Entidade: order_items
+
+Representa os itens que compõem um pedido.
+
+Campo	Tipo	Descrição
+_id	objectId	Identificador único do item do pedido.
+order_id	objectId	Referência ao pedido ao qual o item pertence.
+product_id	objectId	Identificador do produto adquirido.
+product_name	varchar	Nome do produto no momento da compra.
+quantity	int	Quantidade adquirida do produto.
+unit_price	decimal	Preço unitário do produto no momento da compra.
+
+⸻
+
+Relacionamentos
+
+Customers → Orders
+
+* Um cliente (customers) pode possuir vários pedidos (orders).
+* Relacionamento: 1:N
+* Chave de referência: orders.customer_id → customers._id
+
+Orders → Order Items
+
+* Um pedido (orders) pode possuir vários itens (order_items).
+* Relacionamento: 1:N
+* Chave de referência: order_items.order_id → orders._id
+
+Orders → Payments
+
+* Um pedido (orders) pode possuir um ou mais pagamentos (payments).
+* Relacionamento: 1:N
+* Chave de referência: payments.order_id → orders._id
+
+Customers → Customer Promotions
+
+* Um cliente (customers) pode possuir várias promoções atribuídas.
+* Relacionamento: 1:N
+* Chave de referência: customer_promotions.customer_id → customers._id
+
+Promotions → Customer Promotions
+
+* Uma promoção pode ser atribuída a vários clientes.
+* Relacionamento: 1:N
+* Chave de referência: customer_promotions.promotion_id → promotions._id

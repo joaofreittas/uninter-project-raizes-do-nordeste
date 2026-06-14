@@ -11,8 +11,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EvaluationDatabaseGateway implements EvaluationGateway {
 
-    private final EvaluationJpaRepository evaluationRepository;
-    private final EmployeeJpaRepository employeeRepository;
+    private final EvaluationRepository evaluationRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Override
     public EvaluationDomain save(final EvaluationDomain evaluation) {
