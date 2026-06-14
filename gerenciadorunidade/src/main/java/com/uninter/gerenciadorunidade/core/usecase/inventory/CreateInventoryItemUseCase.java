@@ -10,8 +10,6 @@ import com.uninter.gerenciadorunidade.core.gateway.UnitGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 @RequiredArgsConstructor
 public class CreateInventoryItemUseCase {
@@ -28,15 +26,8 @@ public class CreateInventoryItemUseCase {
         productGateway.findById(productId)
             .orElseThrow(() -> new DomainException("Product not found: " + productId));
 
-        var item = InventoryItemDomain.builder()
-            .unitId(unitId)
-            .productId(productId)
-            .quantity(quantity)
-            .minimumQuantity(minimumQuantity)
-            .createdAt(LocalDateTime.now())
-            .build();
-
-        return inventoryItemGateway.save(item);
+        return inventoryItemGateway.save(
+            InventoryItemDomain.create(unitId, productId, quantity, minimumQuantity));
     }
 
 }

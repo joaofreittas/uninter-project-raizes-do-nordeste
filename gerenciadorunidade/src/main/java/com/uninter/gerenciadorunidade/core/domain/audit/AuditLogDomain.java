@@ -20,4 +20,16 @@ public class AuditLogDomain {
     private Long entityId;
     private LocalDateTime occurredAt;
 
+    public static AuditLogDomain create(final String userEmail, final AuditAction action,
+                                        final String entity, final Long entityId,
+                                        final LocalDateTime occurredAt) {
+        return AuditLogDomain.builder()
+            .userEmail(userEmail)
+            .action(action)
+            .entity(entity)
+            .entityId(entityId)
+            .occurredAt(occurredAt)
+            .build();
+    }
+
 }

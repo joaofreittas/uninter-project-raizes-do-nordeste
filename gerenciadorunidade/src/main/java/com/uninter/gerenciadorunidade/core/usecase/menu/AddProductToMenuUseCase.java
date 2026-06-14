@@ -10,8 +10,6 @@ import com.uninter.gerenciadorunidade.core.gateway.ProductGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 @RequiredArgsConstructor
 public class AddProductToMenuUseCase {
@@ -32,14 +30,7 @@ public class AddProductToMenuUseCase {
         }
 
         menuProductGateway.save(menuId, productId);
-
-        var updated = MenuDomain.builder()
-            .id(menu.getId())
-            .unitId(menu.getUnitId())
-            .createdAt(menu.getCreatedAt())
-            .updatedAt(LocalDateTime.now())
-            .build();
-        menuGateway.save(updated);
+        menuGateway.save(menu.touch());
 
         return findMenuByIdUseCase.execute(menuId);
     }

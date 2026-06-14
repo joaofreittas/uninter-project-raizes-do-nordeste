@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -20,14 +19,7 @@ public class UpdateProductUseCase {
     @Auditable(action = AuditAction.UPDATE)
     public ProductDomain execute(final Long id, final String name, final BigDecimal price) {
         var existing = findProductByIdUseCase.execute(id);
-        var updated = ProductDomain.builder()
-            .id(existing.getId())
-            .name(name)
-            .price(price)
-            .createdAt(existing.getCreatedAt())
-            .updatedAt(LocalDateTime.now())
-            .build();
-        return productGateway.save(updated);
+        return productGateway.save(existing.update(name, price));
     }
 
 }

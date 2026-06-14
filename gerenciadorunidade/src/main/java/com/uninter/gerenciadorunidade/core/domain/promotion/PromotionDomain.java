@@ -1,5 +1,6 @@
 package com.uninter.gerenciadorunidade.core.domain.promotion;
 
+import com.uninter.gerenciadorunidade.core.exception.DomainException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,5 +22,38 @@ public class PromotionDomain {
     private PromotionReward reward;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    public static PromotionDomain create(final Long unitId, final String title,
+                                         final LocalDateTime startDate, final LocalDateTime endDate,
+                                         final PromotionReward reward) {
+        if (!startDate.isBefore(endDate)) {
+            throw new DomainException("startDate deve ser anterior a endDate");
+        }
+        return PromotionDomain.builder()
+            .unitId(unitId)
+            .title(title)
+            .startDate(startDate)
+            .endDate(endDate)
+            .reward(reward)
+            .createdAt(LocalDateTime.now())
+            .build();
+    }
+
+    public PromotionDomain update(final String title, final LocalDateTime startDate,
+                                  final LocalDateTime endDate, final PromotionReward reward) {
+        if (!startDate.isBefore(endDate)) {
+            throw new DomainException("startDate deve ser anterior a endDate");
+        }
+        return PromotionDomain.builder()
+            .id(this.id)
+            .unitId(this.unitId)
+            .title(title)
+            .startDate(startDate)
+            .endDate(endDate)
+            .reward(reward)
+            .createdAt(this.createdAt)
+            .updatedAt(LocalDateTime.now())
+            .build();
+    }
 
 }

@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -28,20 +27,8 @@ public class CreateCustomerUseCase {
             throw new DomainException("Email already registered: " + email);
         }
 
-        var now = LocalDateTime.now();
-        var customer = CustomerDomain.builder()
-            .name(name)
-            .document(document)
-            .email(email)
-            .phone(phone)
-            .birthDate(birthDate)
-            .lgpdAccepted(lgpdAccepted)
-            .marketingAccepted(marketingAccepted)
-            .createdAt(now)
-            .updatedAt(now)
-            .build();
-
-        return customerGateway.save(customer);
+        return customerGateway.save(
+            CustomerDomain.create(name, document, email, phone, birthDate, lgpdAccepted, marketingAccepted));
     }
 
 }

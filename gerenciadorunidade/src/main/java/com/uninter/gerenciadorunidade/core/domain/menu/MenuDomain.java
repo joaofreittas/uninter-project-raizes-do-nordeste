@@ -21,6 +21,23 @@ public class MenuDomain {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    public static MenuDomain create(final Long unitId) {
+        return MenuDomain.builder()
+            .unitId(unitId)
+            .createdAt(LocalDateTime.now())
+            .build();
+    }
+
+    public MenuDomain touch() {
+        return MenuDomain.builder()
+            .id(this.id)
+            .unitId(this.unitId)
+            .products(this.products)
+            .createdAt(this.createdAt)
+            .updatedAt(LocalDateTime.now())
+            .build();
+    }
+
     @Getter
     @Builder
     @AllArgsConstructor

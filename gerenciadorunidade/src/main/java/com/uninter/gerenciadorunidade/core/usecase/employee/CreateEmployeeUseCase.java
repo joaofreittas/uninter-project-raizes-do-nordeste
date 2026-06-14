@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -30,18 +29,7 @@ public class CreateEmployeeUseCase {
             throw new DomainException("Document already registered: " + document);
         }
 
-        var now = LocalDateTime.now();
-        var employee = EmployeeDomain.builder()
-            .unitId(unitId)
-            .name(name)
-            .address(address)
-            .document(document)
-            .birthDate(birthDate)
-            .type(type)
-            .createdAt(now)
-            .build();
-
-        return employeeGateway.save(employee);
+        return employeeGateway.save(EmployeeDomain.create(unitId, name, address, document, birthDate, type));
     }
 
 }

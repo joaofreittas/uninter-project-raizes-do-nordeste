@@ -16,13 +16,8 @@ public class RegisterUserUseCase {
 
     public UserDomain execute(final String name, final String email,
                               final String rawPassword, final Role role) {
-        var user = UserDomain.builder()
-            .name(name)
-            .email(email)
-            .password(passwordEncoder.encode(rawPassword))
-            .role(role == null ? Role.USER : role)
-            .build();
-        return userGateway.save(user);
+        return userGateway.save(
+            UserDomain.create(name, email, passwordEncoder.encode(rawPassword), role));
     }
 
 }

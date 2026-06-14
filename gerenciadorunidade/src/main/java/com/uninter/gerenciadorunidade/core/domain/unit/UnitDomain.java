@@ -20,6 +20,26 @@ public class UnitDomain {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    public static UnitDomain create(final String name, final String address) {
+        return UnitDomain.builder()
+            .name(name)
+            .address(address)
+            .status(UnitStatus.ACTIVATED)
+            .createdAt(LocalDateTime.now())
+            .build();
+    }
+
+    public UnitDomain update(final String name, final String address) {
+        return UnitDomain.builder()
+            .id(this.id)
+            .name(name)
+            .address(address)
+            .status(this.status)
+            .createdAt(this.createdAt)
+            .updatedAt(LocalDateTime.now())
+            .build();
+    }
+
     public UnitDomain deactivate() {
         return UnitDomain.builder()
             .id(this.id)

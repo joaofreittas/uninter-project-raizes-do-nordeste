@@ -21,4 +21,14 @@ public class UserDomain {
     private Long unitId;
     private Long employeeId;
 
+    public static UserDomain create(final String name, final String email,
+                                    final String encodedPassword, final Role role) {
+        return UserDomain.builder()
+            .name(name)
+            .email(email)
+            .password(encodedPassword)
+            .role(role == null ? Role.USER : role)
+            .build();
+    }
+
 }

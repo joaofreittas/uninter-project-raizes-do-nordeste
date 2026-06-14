@@ -7,8 +7,6 @@ import com.uninter.gerenciadorunidade.core.gateway.InventoryItemGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 @RequiredArgsConstructor
 public class AddStockUseCase {
@@ -19,16 +17,7 @@ public class AddStockUseCase {
     @Auditable(action = AuditAction.UPDATE, entity = "InventoryItem.addStock")
     public InventoryItemDomain execute(final Long id, final Integer amount) {
         var existing = findInventoryItemByIdUseCase.execute(id);
-        var updated = InventoryItemDomain.builder()
-            .id(existing.getId())
-            .unitId(existing.getUnitId())
-            .productId(existing.getProductId())
-            .quantity(existing.getQuantity() + amount)
-            .minimumQuantity(existing.getMinimumQuantity())
-            .createdAt(existing.getCreatedAt())
-            .updatedAt(LocalDateTime.now())
-            .build();
-        return inventoryItemGateway.save(updated);
+        return inventoryItemGateway.save(existing.addStock(amount));
     }
 
 }

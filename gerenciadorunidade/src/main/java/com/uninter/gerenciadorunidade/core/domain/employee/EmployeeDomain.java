@@ -26,4 +26,34 @@ public class EmployeeDomain {
     private LocalDateTime updatedAt;
     private List<EvaluationDomain> evaluations;
 
+    public static EmployeeDomain create(final Long unitId, final String name, final String address,
+                                        final String document, final LocalDate birthDate,
+                                        final EmployeeType type) {
+        return EmployeeDomain.builder()
+            .unitId(unitId)
+            .name(name)
+            .address(address)
+            .document(document)
+            .birthDate(birthDate)
+            .type(type)
+            .createdAt(LocalDateTime.now())
+            .build();
+    }
+
+    public EmployeeDomain update(final String name, final String address,
+                                 final LocalDate birthDate, final EmployeeType type) {
+        return EmployeeDomain.builder()
+            .id(this.id)
+            .unitId(this.unitId)
+            .name(name)
+            .address(address)
+            .document(this.document)
+            .birthDate(birthDate)
+            .type(type)
+            .evaluations(this.evaluations)
+            .createdAt(this.createdAt)
+            .updatedAt(LocalDateTime.now())
+            .build();
+    }
+
 }

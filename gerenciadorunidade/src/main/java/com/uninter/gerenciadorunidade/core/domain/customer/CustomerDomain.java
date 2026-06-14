@@ -25,4 +25,37 @@ public class CustomerDomain {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    public static CustomerDomain create(final String name, final String document, final String email,
+                                        final String phone, final LocalDate birthDate,
+                                        final Boolean lgpdAccepted, final Boolean marketingAccepted) {
+        var now = LocalDateTime.now();
+        return CustomerDomain.builder()
+            .name(name)
+            .document(document)
+            .email(email)
+            .phone(phone)
+            .birthDate(birthDate)
+            .lgpdAccepted(lgpdAccepted)
+            .marketingAccepted(marketingAccepted != null ? marketingAccepted : Boolean.FALSE)
+            .createdAt(now)
+            .updatedAt(now)
+            .build();
+    }
+
+    public CustomerDomain update(final String name, final String phone,
+                                 final LocalDate birthDate, final Boolean marketingAccepted) {
+        return CustomerDomain.builder()
+            .id(this.id)
+            .name(name)
+            .document(this.document)
+            .email(this.email)
+            .phone(phone)
+            .birthDate(birthDate)
+            .lgpdAccepted(this.lgpdAccepted)
+            .marketingAccepted(marketingAccepted)
+            .createdAt(this.createdAt)
+            .updatedAt(LocalDateTime.now())
+            .build();
+    }
+
 }

@@ -9,8 +9,6 @@ import com.uninter.gerenciadorunidade.core.gateway.UnitGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 @RequiredArgsConstructor
 public class CreateMenuUseCase {
@@ -27,12 +25,7 @@ public class CreateMenuUseCase {
             throw new DomainException("Unit " + unitId + " already has a menu");
         }
 
-        var menu = MenuDomain.builder()
-            .unitId(unitId)
-            .createdAt(LocalDateTime.now())
-            .build();
-
-        return menuGateway.save(menu);
+        return menuGateway.save(MenuDomain.create(unitId));
     }
 
 }

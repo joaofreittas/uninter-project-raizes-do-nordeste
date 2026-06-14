@@ -23,24 +23,10 @@ public class CreatePromotionUseCase {
     public PromotionDomain execute(final Long unitId, final String title,
                                    final LocalDateTime startDate, final LocalDateTime endDate,
                                    final PromotionReward reward) {
-        if (!startDate.isBefore(endDate)) {
-            throw new DomainException("startDate deve ser anterior a endDate");
-        }
-
         unitGateway.findById(unitId)
             .orElseThrow(() -> new DomainException("Unit not found: " + unitId));
 
-        var now = LocalDateTime.now();
-        var promotion = PromotionDomain.builder()
-            .unitId(unitId)
-            .title(title)
-            .startDate(startDate)
-            .endDate(endDate)
-            .reward(reward)
-            .createdAt(now)
-            .build();
-
-        return promotionGateway.save(promotion);
+        return promotionGateway.save(PromotionDomain.create(unitId, title, startDate, endDate, reward));
     }
 
 }

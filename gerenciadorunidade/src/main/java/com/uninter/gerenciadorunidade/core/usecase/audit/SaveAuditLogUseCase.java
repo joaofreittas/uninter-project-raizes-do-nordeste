@@ -17,14 +17,8 @@ public class SaveAuditLogUseCase {
     public AuditLogDomain execute(final String userEmail, final AuditAction action,
                                   final String entity, final Long entityId,
                                   final LocalDateTime occurredAt) {
-        var log = AuditLogDomain.builder()
-            .userEmail(userEmail)
-            .action(action)
-            .entity(entity)
-            .entityId(entityId)
-            .occurredAt(occurredAt)
-            .build();
-        return auditLogGateway.save(log);
+        return auditLogGateway.save(
+            AuditLogDomain.create(userEmail, action, entity, entityId, occurredAt));
     }
 
 }

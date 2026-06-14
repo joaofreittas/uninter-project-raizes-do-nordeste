@@ -3,12 +3,9 @@ package com.uninter.gerenciadorunidade.core.usecase.unit;
 import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
 import com.uninter.gerenciadorunidade.audit.Auditable;
 import com.uninter.gerenciadorunidade.core.domain.unit.UnitDomain;
-import com.uninter.gerenciadorunidade.core.domain.unit.UnitStatus;
 import com.uninter.gerenciadorunidade.core.gateway.UnitGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -18,14 +15,7 @@ public class CreateUnitUseCase {
 
     @Auditable(action = AuditAction.CREATE)
     public UnitDomain execute(final String name, final String address) {
-        var now = LocalDateTime.now();
-        var unit = UnitDomain.builder()
-            .name(name)
-            .address(address)
-            .status(UnitStatus.ACTIVATED)
-            .createdAt(now)
-            .build();
-        return unitGateway.save(unit);
+        return unitGateway.save(UnitDomain.create(name, address));
     }
 
 }
