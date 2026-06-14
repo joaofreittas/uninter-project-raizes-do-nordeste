@@ -1,7 +1,6 @@
 package com.uninter.gerenciadorunidade.audit;
 
-import com.uninter.gerenciadorunidade.model.audit.AuditLog;
-import com.uninter.gerenciadorunidade.repository.AuditLogRepository;
+import com.uninter.gerenciadorunidade.core.usecase.audit.SaveAuditLogUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
@@ -11,20 +10,18 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class AuditEventListener {
 
-    private final AuditLogRepository auditLogRepository;
+    private final SaveAuditLogUseCase saveAuditLogUseCase;
 
     @Async
     @EventListener
     public void onAuditEvent(AuditEvent event) {
-        var log = AuditLog.builder()
-            .userEmail(event.userEmail())
-            .action(event.action())
-            .entity(event.entity())
-            .entityId(event.entityId())
-            .occurredAt(event.occurredAt())
-            .build();
-
-        auditLogRepository.save(log);
+        saveAuditLogUseCase.execute(
+            event.userEmail(),
+            event.action(),
+            event.entity(),
+            event.entityId(),
+            event.occurredAt()
+        );
     }
 
 }

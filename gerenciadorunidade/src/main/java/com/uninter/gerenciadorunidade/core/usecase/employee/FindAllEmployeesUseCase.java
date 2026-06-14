@@ -1,0 +1,20 @@
+package com.uninter.gerenciadorunidade.core.usecase.employee;
+
+import com.uninter.gerenciadorunidade.core.domain.EmployeeDomain;
+import com.uninter.gerenciadorunidade.core.gateway.EmployeeGateway;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class FindAllEmployeesUseCase {
+
+    private final EmployeeGateway employeeGateway;
+
+    public List<EmployeeDomain> execute() {
+        return employeeGateway.findAll();
+    }
+
+}

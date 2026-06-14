@@ -1,0 +1,37 @@
+package com.uninter.gerenciadorunidade.dataprovider.database.product;
+
+import com.uninter.gerenciadorunidade.core.domain.ProductDomain;
+import com.uninter.gerenciadorunidade.core.gateway.ProductGateway;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
+
+@Component
+@RequiredArgsConstructor
+public class ProductDatabaseGateway implements ProductGateway {
+
+    private final ProductJpaRepository repository;
+
+    @Override
+    public ProductDomain save(final ProductDomain product) {
+        return repository.save(ProductEntity.from(product)).toDomain();
+    }
+
+    @Override
+    public Optional<ProductDomain> findById(final Long id) {
+        return repository.findById(id).map(ProductEntity::toDomain);
+    }
+
+    @Override
+    public List<ProductDomain> findAll() {
+        return repository.findAll().stream().map(ProductEntity::toDomain).toList();
+    }
+
+    @Override
+    public void delete(final ProductDomain product) {
+        repository.deleteById(product.getId());
+    }
+
+}

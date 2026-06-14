@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.config.auth;
 
-import com.uninter.gerenciadorunidade.controller.auth.JWTAuthFilter;
+import com.uninter.gerenciadorunidade.config.auth.JWTAuthFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

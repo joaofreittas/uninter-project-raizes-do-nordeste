@@ -1,0 +1,33 @@
+package com.uninter.gerenciadorunidade.core.usecase.product;
+
+import com.uninter.gerenciadorunidade.core.domain.AuditAction;
+import com.uninter.gerenciadorunidade.audit.Auditable;
+import com.uninter.gerenciadorunidade.core.domain.ProductDomain;
+import com.uninter.gerenciadorunidade.core.gateway.ProductGateway;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Service
+@RequiredArgsConstructor
+public class UpdateProductUseCase {
+
+    private final FindProductByIdUseCase findProductByIdUseCase;
+    private final ProductGateway productGateway;
+
+    @Auditable(action = AuditAction.UPDATE)
+    public ProductDomain execute(final Long id, final String name, final BigDecimal price) {
+        var existing = findProductByIdUseCase.execute(id);
+        var updated = ProductDomain.builder()
+            .id(existing.getId())
+            .name(name)
+            .price(price)
+            .createdAt(existing.getCreatedAt())
+            .updatedAt(LocalDateTime.now())
+            .build();
+        return productGateway.save(updated);
+    }
+
+}
