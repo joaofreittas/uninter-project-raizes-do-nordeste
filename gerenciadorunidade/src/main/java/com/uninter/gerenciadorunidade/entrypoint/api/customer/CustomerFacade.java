@@ -1,0 +1,54 @@
+package com.uninter.gerenciadorunidade.entrypoint.api.customer;
+
+import com.uninter.gerenciadorunidade.core.usecase.customer.CreateCustomerUseCase;
+import com.uninter.gerenciadorunidade.core.usecase.customer.DeleteCustomerUseCase;
+import com.uninter.gerenciadorunidade.core.usecase.customer.FindAllCustomersUseCase;
+import com.uninter.gerenciadorunidade.core.usecase.customer.FindCustomerByIdUseCase;
+import com.uninter.gerenciadorunidade.core.usecase.customer.UpdateCustomerUseCase;
+import com.uninter.gerenciadorunidade.entrypoint.api.customer.dto.CreateCustomerRequest;
+import com.uninter.gerenciadorunidade.entrypoint.api.customer.dto.CustomerResponse;
+import com.uninter.gerenciadorunidade.entrypoint.api.customer.dto.UpdateCustomerRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+@RequiredArgsConstructor
+public class CustomerFacade {
+
+    private final CreateCustomerUseCase createCustomerUseCase;
+    private final FindAllCustomersUseCase findAllCustomersUseCase;
+    private final FindCustomerByIdUseCase findCustomerByIdUseCase;
+    private final UpdateCustomerUseCase updateCustomerUseCase;
+    private final DeleteCustomerUseCase deleteCustomerUseCase;
+
+    public CustomerResponse create(final CreateCustomerRequest request) {
+        var domain = createCustomerUseCase.execute(
+            request.name(), request.document(), request.email(),
+            request.phone(), request.birthDate(),
+            request.lgpdAccepted(),
+            request.marketingAccepted() != null ? request.marketingAccepted() : Boolean.FALSE);
+        return CustomerResponse.fromDomain(domain);
+    }
+
+    public List<CustomerResponse> findAll() {
+        return findAllCustomersUseCase.execute().stream().map(CustomerResponse::fromDomain).toList();
+    }
+
+    public CustomerResponse findById(final Long id) {
+        return CustomerResponse.fromDomain(findCustomerByIdUseCase.execute(id));
+    }
+
+    public CustomerResponse update(final Long id, final UpdateCustomerRequest request) {
+        var domain = updateCustomerUseCase.execute(
+            id, request.name(), request.phone(),
+            request.birthDate(), request.marketingAccepted());
+        return CustomerResponse.fromDomain(domain);
+    }
+
+    public void delete(final Long id) {
+        deleteCustomerUseCase.execute(id);
+    }
+
+}
