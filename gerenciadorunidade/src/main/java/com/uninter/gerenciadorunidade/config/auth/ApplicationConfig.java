@@ -1,7 +1,6 @@
 package com.uninter.gerenciadorunidade.config.auth;
 
 import com.uninter.gerenciadorunidade.dataprovider.database.auth.UserRepository;
-import com.uninter.gerenciadorunidade.dataprovider.database.auth.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
