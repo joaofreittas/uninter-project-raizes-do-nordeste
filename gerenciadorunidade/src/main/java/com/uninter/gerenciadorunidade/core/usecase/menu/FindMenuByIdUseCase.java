@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.usecase.menu;
 
-import com.uninter.gerenciadorunidade.core.domain.MenuDomain;
+import com.uninter.gerenciadorunidade.core.domain.menu.MenuDomain;
 import com.uninter.gerenciadorunidade.core.exception.ResourceNotFoundException;
 import com.uninter.gerenciadorunidade.core.gateway.MenuGateway;
 import lombok.RequiredArgsConstructor;

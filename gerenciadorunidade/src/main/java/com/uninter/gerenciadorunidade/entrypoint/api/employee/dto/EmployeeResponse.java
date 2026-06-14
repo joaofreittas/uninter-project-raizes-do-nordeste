@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.employee.dto;
 
-import com.uninter.gerenciadorunidade.core.domain.EmployeeDomain;
-import com.uninter.gerenciadorunidade.core.domain.EmployeeType;
+import com.uninter.gerenciadorunidade.core.domain.employee.EmployeeDomain;
+import com.uninter.gerenciadorunidade.core.domain.employee.EmployeeType;
 import lombok.Builder;
 
 import java.time.LocalDate;

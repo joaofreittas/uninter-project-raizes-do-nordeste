@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.core.usecase.auth;
 
-import com.uninter.gerenciadorunidade.core.domain.Role;
-import com.uninter.gerenciadorunidade.core.domain.UserDomain;
+import com.uninter.gerenciadorunidade.core.domain.user.Role;
+import com.uninter.gerenciadorunidade.core.domain.user.UserDomain;
 import com.uninter.gerenciadorunidade.core.gateway.UserGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

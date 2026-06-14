@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.usecase.promotion;
 
-import com.uninter.gerenciadorunidade.core.domain.PromotionDomain;
+import com.uninter.gerenciadorunidade.core.domain.promotion.PromotionDomain;
 import com.uninter.gerenciadorunidade.core.exception.ResourceNotFoundException;
 import com.uninter.gerenciadorunidade.core.gateway.PromotionGateway;
 import lombok.RequiredArgsConstructor;

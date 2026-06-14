@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.gateway;
 
-import com.uninter.gerenciadorunidade.core.domain.ProductDomain;
+import com.uninter.gerenciadorunidade.core.domain.product.ProductDomain;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,9 +1,9 @@
 package com.uninter.gerenciadorunidade.core.usecase.unit;
 
-import com.uninter.gerenciadorunidade.core.domain.AuditAction;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
 import com.uninter.gerenciadorunidade.audit.Auditable;
-import com.uninter.gerenciadorunidade.core.domain.UnitDomain;
-import com.uninter.gerenciadorunidade.core.domain.UnitStatus;
+import com.uninter.gerenciadorunidade.core.domain.unit.UnitDomain;
+import com.uninter.gerenciadorunidade.core.domain.unit.UnitStatus;
 import com.uninter.gerenciadorunidade.core.gateway.UnitGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

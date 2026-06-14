@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.usecase.employee;
 
-import com.uninter.gerenciadorunidade.core.domain.EmployeeDomain;
+import com.uninter.gerenciadorunidade.core.domain.employee.EmployeeDomain;
 import com.uninter.gerenciadorunidade.core.exception.ResourceNotFoundException;
 import com.uninter.gerenciadorunidade.core.gateway.EmployeeGateway;
 import lombok.RequiredArgsConstructor;

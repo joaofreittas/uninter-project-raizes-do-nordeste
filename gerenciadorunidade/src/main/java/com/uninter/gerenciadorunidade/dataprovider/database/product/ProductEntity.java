@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.product;
 
-import com.uninter.gerenciadorunidade.core.domain.ProductDomain;
+import com.uninter.gerenciadorunidade.core.domain.product.ProductDomain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

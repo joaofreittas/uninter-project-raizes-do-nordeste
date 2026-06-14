@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.inventory;
 
-import com.uninter.gerenciadorunidade.core.domain.InventoryItemDomain;
+import com.uninter.gerenciadorunidade.core.domain.inventory.InventoryItemDomain;
 import com.uninter.gerenciadorunidade.core.gateway.InventoryItemGateway;
 import com.uninter.gerenciadorunidade.dataprovider.database.product.ProductJpaRepository;
 import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitJpaRepository;

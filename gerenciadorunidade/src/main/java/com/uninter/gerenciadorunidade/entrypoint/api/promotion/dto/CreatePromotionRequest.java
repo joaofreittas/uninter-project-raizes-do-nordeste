@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.promotion.dto;
 
-import com.uninter.gerenciadorunidade.core.domain.PromotionReward;
+import com.uninter.gerenciadorunidade.core.domain.promotion.PromotionReward;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

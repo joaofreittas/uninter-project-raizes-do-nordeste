@@ -1,4 +1,4 @@
-package com.uninter.gerenciadorunidade.core.domain;
+package com.uninter.gerenciadorunidade.core.domain.audit;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.employee;
 
-import com.uninter.gerenciadorunidade.core.domain.EvaluationDomain;
+import com.uninter.gerenciadorunidade.core.domain.employee.EvaluationDomain;
 import com.uninter.gerenciadorunidade.core.gateway.EvaluationGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

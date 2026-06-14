@@ -1,8 +1,8 @@
 package com.uninter.gerenciadorunidade.core.usecase.employee;
 
-import com.uninter.gerenciadorunidade.core.domain.AuditAction;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
 import com.uninter.gerenciadorunidade.audit.Auditable;
-import com.uninter.gerenciadorunidade.core.domain.EvaluationDomain;
+import com.uninter.gerenciadorunidade.core.domain.employee.EvaluationDomain;
 import com.uninter.gerenciadorunidade.core.exception.DomainException;
 import com.uninter.gerenciadorunidade.core.gateway.EvaluationGateway;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.auth.dto;
 
-import com.uninter.gerenciadorunidade.core.domain.Role;
+import com.uninter.gerenciadorunidade.core.domain.user.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

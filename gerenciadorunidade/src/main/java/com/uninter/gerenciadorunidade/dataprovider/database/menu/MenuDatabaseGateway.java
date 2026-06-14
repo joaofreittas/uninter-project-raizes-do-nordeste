@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.menu;
 
-import com.uninter.gerenciadorunidade.core.domain.MenuDomain;
+import com.uninter.gerenciadorunidade.core.domain.menu.MenuDomain;
 import com.uninter.gerenciadorunidade.core.gateway.MenuGateway;
 import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitJpaRepository;
 import lombok.RequiredArgsConstructor;

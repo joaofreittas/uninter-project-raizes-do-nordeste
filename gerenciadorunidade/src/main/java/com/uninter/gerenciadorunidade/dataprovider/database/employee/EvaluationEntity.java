@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.employee;
 
-import com.uninter.gerenciadorunidade.core.domain.EvaluationDomain;
+import com.uninter.gerenciadorunidade.core.domain.employee.EvaluationDomain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

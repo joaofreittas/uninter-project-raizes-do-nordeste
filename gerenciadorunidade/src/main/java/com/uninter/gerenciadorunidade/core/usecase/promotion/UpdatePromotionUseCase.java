@@ -1,9 +1,9 @@
 package com.uninter.gerenciadorunidade.core.usecase.promotion;
 
-import com.uninter.gerenciadorunidade.core.domain.AuditAction;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
 import com.uninter.gerenciadorunidade.audit.Auditable;
-import com.uninter.gerenciadorunidade.core.domain.PromotionDomain;
-import com.uninter.gerenciadorunidade.core.domain.PromotionReward;
+import com.uninter.gerenciadorunidade.core.domain.promotion.PromotionDomain;
+import com.uninter.gerenciadorunidade.core.domain.promotion.PromotionReward;
 import com.uninter.gerenciadorunidade.core.exception.DomainException;
 import com.uninter.gerenciadorunidade.core.gateway.PromotionGateway;
 import lombok.RequiredArgsConstructor;

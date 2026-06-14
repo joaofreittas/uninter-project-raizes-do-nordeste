@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.unit;
 
-import com.uninter.gerenciadorunidade.core.domain.UnitDomain;
+import com.uninter.gerenciadorunidade.core.domain.unit.UnitDomain;
 import com.uninter.gerenciadorunidade.core.gateway.UnitGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

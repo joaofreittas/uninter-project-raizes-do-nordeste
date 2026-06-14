@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.product.dto;
 
-import com.uninter.gerenciadorunidade.core.domain.ProductDomain;
+import com.uninter.gerenciadorunidade.core.domain.product.ProductDomain;
 import lombok.Builder;
 
 import java.math.BigDecimal;

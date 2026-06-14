@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.auth.dto;
 
-import com.uninter.gerenciadorunidade.core.domain.Role;
-import com.uninter.gerenciadorunidade.core.domain.UserDomain;
+import com.uninter.gerenciadorunidade.core.domain.user.Role;
+import com.uninter.gerenciadorunidade.core.domain.user.UserDomain;
 import lombok.Builder;
 
 @Builder

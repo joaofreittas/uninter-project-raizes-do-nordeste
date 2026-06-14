@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.unit;
 
-import com.uninter.gerenciadorunidade.core.domain.UnitDomain;
+import com.uninter.gerenciadorunidade.core.domain.unit.UnitDomain;
 import com.uninter.gerenciadorunidade.core.usecase.unit.CreateUnitUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.unit.DeactivateUnitUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.unit.DeleteUnitUseCase;

@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.gateway;
 
-import com.uninter.gerenciadorunidade.core.domain.AuditLogDomain;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditLogDomain;
 
 import java.util.List;
 import java.util.Optional;

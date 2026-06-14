@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.gateway;
 
-import com.uninter.gerenciadorunidade.core.domain.UnitDomain;
+import com.uninter.gerenciadorunidade.core.domain.unit.UnitDomain;
 
 import java.util.List;
 import java.util.Optional;

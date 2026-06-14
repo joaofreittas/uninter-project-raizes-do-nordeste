@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.gateway;
 
-import com.uninter.gerenciadorunidade.core.domain.EvaluationDomain;
+import com.uninter.gerenciadorunidade.core.domain.employee.EvaluationDomain;
 
 import java.util.List;
 

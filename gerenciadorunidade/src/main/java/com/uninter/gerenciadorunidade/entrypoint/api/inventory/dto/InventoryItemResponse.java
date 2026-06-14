@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.inventory.dto;
 
-import com.uninter.gerenciadorunidade.core.domain.InventoryItemDomain;
+import com.uninter.gerenciadorunidade.core.domain.inventory.InventoryItemDomain;
 import lombok.Builder;
 
 import java.time.LocalDateTime;

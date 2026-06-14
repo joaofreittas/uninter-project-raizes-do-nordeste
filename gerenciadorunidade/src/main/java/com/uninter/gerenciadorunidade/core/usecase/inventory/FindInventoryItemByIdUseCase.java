@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.usecase.inventory;
 
-import com.uninter.gerenciadorunidade.core.domain.InventoryItemDomain;
+import com.uninter.gerenciadorunidade.core.domain.inventory.InventoryItemDomain;
 import com.uninter.gerenciadorunidade.core.exception.ResourceNotFoundException;
 import com.uninter.gerenciadorunidade.core.gateway.InventoryItemGateway;
 import lombok.RequiredArgsConstructor;

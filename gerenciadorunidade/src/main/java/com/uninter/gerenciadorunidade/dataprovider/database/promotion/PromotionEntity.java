@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.promotion;
 
-import com.uninter.gerenciadorunidade.core.domain.PromotionDomain;
-import com.uninter.gerenciadorunidade.core.domain.PromotionReward;
+import com.uninter.gerenciadorunidade.core.domain.promotion.PromotionDomain;
+import com.uninter.gerenciadorunidade.core.domain.promotion.PromotionReward;
 import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

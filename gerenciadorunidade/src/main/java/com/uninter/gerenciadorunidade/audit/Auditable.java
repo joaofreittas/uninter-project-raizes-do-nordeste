@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.audit;
 
-import com.uninter.gerenciadorunidade.core.domain.AuditAction;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

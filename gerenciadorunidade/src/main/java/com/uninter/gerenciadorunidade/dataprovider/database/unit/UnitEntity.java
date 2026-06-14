@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.unit;
 
-import com.uninter.gerenciadorunidade.core.domain.UnitDomain;
-import com.uninter.gerenciadorunidade.core.domain.UnitStatus;
+import com.uninter.gerenciadorunidade.core.domain.unit.UnitDomain;
+import com.uninter.gerenciadorunidade.core.domain.unit.UnitStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

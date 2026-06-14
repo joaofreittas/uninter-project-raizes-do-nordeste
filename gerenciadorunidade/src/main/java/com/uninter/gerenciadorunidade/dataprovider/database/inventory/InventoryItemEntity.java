@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.inventory;
 
-import com.uninter.gerenciadorunidade.core.domain.InventoryItemDomain;
+import com.uninter.gerenciadorunidade.core.domain.inventory.InventoryItemDomain;
 import com.uninter.gerenciadorunidade.dataprovider.database.product.ProductEntity;
 import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitEntity;
 import jakarta.persistence.Column;

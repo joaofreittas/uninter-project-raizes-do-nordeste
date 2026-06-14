@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.gateway;
 
-import com.uninter.gerenciadorunidade.core.domain.PromotionDomain;
+import com.uninter.gerenciadorunidade.core.domain.promotion.PromotionDomain;
 
 import java.util.List;
 import java.util.Optional;

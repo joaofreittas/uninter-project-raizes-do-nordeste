@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.auth;
 
-import com.uninter.gerenciadorunidade.core.domain.Role;
-import com.uninter.gerenciadorunidade.core.domain.UserDomain;
+import com.uninter.gerenciadorunidade.core.domain.user.Role;
+import com.uninter.gerenciadorunidade.core.domain.user.UserDomain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

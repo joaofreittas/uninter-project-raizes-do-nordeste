@@ -23,7 +23,7 @@ public class AuthenticateUserUseCase {
     }
 
     private org.springframework.security.core.userdetails.UserDetails buildUserDetails(
-        com.uninter.gerenciadorunidade.core.domain.UserDomain user) {
+        com.uninter.gerenciadorunidade.core.domain.user.UserDomain user) {
         return org.springframework.security.core.userdetails.User.withUsername(user.getEmail())
             .password(user.getPassword())
             .authorities("ROLE_" + user.getRole().name())

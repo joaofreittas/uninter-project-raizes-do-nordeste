@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.employee;
 
-import com.uninter.gerenciadorunidade.core.domain.EmployeeDomain;
-import com.uninter.gerenciadorunidade.core.domain.EmployeeType;
+import com.uninter.gerenciadorunidade.core.domain.employee.EmployeeDomain;
+import com.uninter.gerenciadorunidade.core.domain.employee.EmployeeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -69,7 +69,7 @@ public class EmployeeEntity {
     private List<EvaluationEntity> evaluations;
 
     public EmployeeDomain toDomain() {
-        var evalDomains = evaluations == null ? List.<com.uninter.gerenciadorunidade.core.domain.EvaluationDomain>of()
+        var evalDomains = evaluations == null ? List.<com.uninter.gerenciadorunidade.core.domain.employee.EvaluationDomain>of()
             : evaluations.stream().map(EvaluationEntity::toDomain).toList();
         return EmployeeDomain.builder()
             .id(id)

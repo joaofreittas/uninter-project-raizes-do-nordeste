@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.unit.dto;
 
-import com.uninter.gerenciadorunidade.core.domain.UnitDomain;
-import com.uninter.gerenciadorunidade.core.domain.UnitStatus;
+import com.uninter.gerenciadorunidade.core.domain.unit.UnitDomain;
+import com.uninter.gerenciadorunidade.core.domain.unit.UnitStatus;
 import lombok.Builder;
 
 import java.time.LocalDateTime;

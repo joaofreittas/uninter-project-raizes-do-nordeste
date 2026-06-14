@@ -1,29 +1,24 @@
-package com.uninter.gerenciadorunidade.core.domain;
+package com.uninter.gerenciadorunidade.core.domain.inventory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDomain {
+public class InventoryItemDomain {
 
     private Long id;
     private Long unitId;
-    private String name;
-    private String address;
-    private String document;
-    private LocalDate birthDate;
-    private EmployeeType type;
+    private Long productId;
+    private Integer quantity;
+    private Integer minimumQuantity;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private List<EvaluationDomain> evaluations;
 
 }

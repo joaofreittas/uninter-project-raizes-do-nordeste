@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.core.gateway;
 
-import com.uninter.gerenciadorunidade.core.domain.InventoryItemDomain;
+import com.uninter.gerenciadorunidade.core.domain.inventory.InventoryItemDomain;
 
 import java.util.List;
 import java.util.Optional;

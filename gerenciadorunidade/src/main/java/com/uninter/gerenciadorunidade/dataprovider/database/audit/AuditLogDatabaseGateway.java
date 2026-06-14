@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.audit;
 
-import com.uninter.gerenciadorunidade.core.domain.AuditLogDomain;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditLogDomain;
 import com.uninter.gerenciadorunidade.core.gateway.AuditLogGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

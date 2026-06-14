@@ -1,6 +1,6 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.employee;
 
-import com.uninter.gerenciadorunidade.core.domain.EmployeeDomain;
+import com.uninter.gerenciadorunidade.core.domain.employee.EmployeeDomain;
 import com.uninter.gerenciadorunidade.core.gateway.EmployeeGateway;
 import com.uninter.gerenciadorunidade.dataprovider.database.unit.UnitJpaRepository;
 import lombok.RequiredArgsConstructor;

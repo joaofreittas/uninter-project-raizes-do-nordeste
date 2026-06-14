@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.dataprovider.database.audit;
 
-import com.uninter.gerenciadorunidade.core.domain.AuditAction;
-import com.uninter.gerenciadorunidade.core.domain.AuditLogDomain;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditLogDomain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

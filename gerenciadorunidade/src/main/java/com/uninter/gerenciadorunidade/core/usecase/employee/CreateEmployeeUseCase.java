@@ -1,9 +1,9 @@
 package com.uninter.gerenciadorunidade.core.usecase.employee;
 
-import com.uninter.gerenciadorunidade.core.domain.AuditAction;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
 import com.uninter.gerenciadorunidade.audit.Auditable;
-import com.uninter.gerenciadorunidade.core.domain.EmployeeDomain;
-import com.uninter.gerenciadorunidade.core.domain.EmployeeType;
+import com.uninter.gerenciadorunidade.core.domain.employee.EmployeeDomain;
+import com.uninter.gerenciadorunidade.core.domain.employee.EmployeeType;
 import com.uninter.gerenciadorunidade.core.exception.DomainException;
 import com.uninter.gerenciadorunidade.core.gateway.EmployeeGateway;
 import com.uninter.gerenciadorunidade.core.gateway.UnitGateway;

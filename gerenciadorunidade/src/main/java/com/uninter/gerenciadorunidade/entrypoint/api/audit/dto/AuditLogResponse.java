@@ -1,7 +1,7 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.audit.dto;
 
-import com.uninter.gerenciadorunidade.core.domain.AuditAction;
-import com.uninter.gerenciadorunidade.core.domain.AuditLogDomain;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditLogDomain;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
