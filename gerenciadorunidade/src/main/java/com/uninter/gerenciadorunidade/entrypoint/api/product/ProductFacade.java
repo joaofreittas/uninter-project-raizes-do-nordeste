@@ -1,5 +1,7 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.product;
 
+import com.uninter.gerenciadorunidade.core.input.product.CreateProductInput;
+import com.uninter.gerenciadorunidade.core.input.product.UpdateProductInput;
 import com.uninter.gerenciadorunidade.core.usecase.product.CreateProductUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.product.DeleteProductUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.product.FindAllProductsUseCase;
@@ -24,7 +26,8 @@ public class ProductFacade {
     private final DeleteProductUseCase deleteProductUseCase;
 
     public ProductResponse create(final CreateProductRequest request) {
-        return ProductResponse.fromDomain(createProductUseCase.execute(request.name(), request.price()));
+        return ProductResponse.fromDomain(createProductUseCase.execute(
+            new CreateProductInput(request.name(), request.price())));
     }
 
     public List<ProductResponse> findAll() {
@@ -36,7 +39,8 @@ public class ProductFacade {
     }
 
     public ProductResponse update(final Long id, final UpdateProductRequest request) {
-        return ProductResponse.fromDomain(updateProductUseCase.execute(id, request.name(), request.price()));
+        return ProductResponse.fromDomain(updateProductUseCase.execute(
+            new UpdateProductInput(id, request.name(), request.price())));
     }
 
     public void delete(final Long id) {

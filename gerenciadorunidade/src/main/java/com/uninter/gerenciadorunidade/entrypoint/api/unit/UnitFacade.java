@@ -1,6 +1,8 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.unit;
 
 import com.uninter.gerenciadorunidade.core.domain.unit.UnitDomain;
+import com.uninter.gerenciadorunidade.core.input.unit.CreateUnitInput;
+import com.uninter.gerenciadorunidade.core.input.unit.UpdateUnitInput;
 import com.uninter.gerenciadorunidade.core.usecase.unit.CreateUnitUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.unit.DeactivateUnitUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.unit.DeleteUnitUseCase;
@@ -27,7 +29,8 @@ public class UnitFacade {
     private final DeleteUnitUseCase deleteUnitUseCase;
 
     public UnitResponse create(final CreateUnitRequest request) {
-        UnitDomain domain = createUnitUseCase.execute(request.name(), request.address());
+        UnitDomain domain = createUnitUseCase.execute(
+            new CreateUnitInput(request.name(), request.address()));
         return UnitResponse.fromDomain(domain);
     }
 
@@ -40,7 +43,8 @@ public class UnitFacade {
     }
 
     public UnitResponse update(final Long id, final UpdateUnitRequest request) {
-        return UnitResponse.fromDomain(updateUnitUseCase.execute(id, request.name(), request.address()));
+        return UnitResponse.fromDomain(updateUnitUseCase.execute(
+            new UpdateUnitInput(id, request.name(), request.address())));
     }
 
     public UnitResponse deactivate(final Long id) {

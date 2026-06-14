@@ -1,5 +1,7 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.customer;
 
+import com.uninter.gerenciadorunidade.core.input.customer.CreateCustomerInput;
+import com.uninter.gerenciadorunidade.core.input.customer.UpdateCustomerInput;
 import com.uninter.gerenciadorunidade.core.usecase.customer.CreateCustomerUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.customer.DeleteCustomerUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.customer.FindAllCustomersUseCase;
@@ -24,11 +26,10 @@ public class CustomerFacade {
     private final DeleteCustomerUseCase deleteCustomerUseCase;
 
     public CustomerResponse create(final CreateCustomerRequest request) {
-        var domain = createCustomerUseCase.execute(
-            request.name(), request.document(), request.email(),
-            request.phone(), request.birthDate(),
-            request.lgpdAccepted(),
-            request.marketingAccepted() != null ? request.marketingAccepted() : Boolean.FALSE);
+        var domain = createCustomerUseCase.execute(new CreateCustomerInput(
+            request.name(), request.document(), request.email(), request.phone(),
+            request.birthDate(), request.lgpdAccepted(),
+            request.marketingAccepted() != null ? request.marketingAccepted() : Boolean.FALSE));
         return CustomerResponse.fromDomain(domain);
     }
 
@@ -41,9 +42,8 @@ public class CustomerFacade {
     }
 
     public CustomerResponse update(final Long id, final UpdateCustomerRequest request) {
-        var domain = updateCustomerUseCase.execute(
-            id, request.name(), request.phone(),
-            request.birthDate(), request.marketingAccepted());
+        var domain = updateCustomerUseCase.execute(new UpdateCustomerInput(
+            id, request.name(), request.phone(), request.birthDate(), request.marketingAccepted()));
         return CustomerResponse.fromDomain(domain);
     }
 

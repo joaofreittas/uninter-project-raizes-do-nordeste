@@ -1,12 +1,13 @@
 package com.uninter.gerenciadorunidade.core.usecase.inventory;
 
-import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
 import com.uninter.gerenciadorunidade.audit.Auditable;
+import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
 import com.uninter.gerenciadorunidade.core.domain.inventory.InventoryItemDomain;
 import com.uninter.gerenciadorunidade.core.exception.DomainException;
 import com.uninter.gerenciadorunidade.core.gateway.InventoryItemGateway;
 import com.uninter.gerenciadorunidade.core.gateway.ProductGateway;
 import com.uninter.gerenciadorunidade.core.gateway.UnitGateway;
+import com.uninter.gerenciadorunidade.core.input.inventory.CreateInventoryItemInput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,15 +20,15 @@ public class CreateInventoryItemUseCase {
     private final ProductGateway productGateway;
 
     @Auditable(action = AuditAction.CREATE)
-    public InventoryItemDomain execute(final Long unitId, final Long productId,
-                                       final Integer quantity, final Integer minimumQuantity) {
-        unitGateway.findById(unitId)
-            .orElseThrow(() -> new DomainException("Unit not found: " + unitId));
-        productGateway.findById(productId)
-            .orElseThrow(() -> new DomainException("Product not found: " + productId));
+    public InventoryItemDomain execute(final CreateInventoryItemInput input) {
+        unitGateway.findById(input.unitId())
+            .orElseThrow(() -> new DomainException("Unit not found: " + input.unitId()));
+        productGateway.findById(input.productId())
+            .orElseThrow(() -> new DomainException("Product not found: " + input.productId()));
 
         return inventoryItemGateway.save(
-            InventoryItemDomain.create(unitId, productId, quantity, minimumQuantity));
+            InventoryItemDomain.create(input.unitId(), input.productId(),
+                input.quantity(), input.minimumQuantity()));
     }
 
 }

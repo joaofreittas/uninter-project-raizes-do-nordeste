@@ -1,5 +1,6 @@
 package com.uninter.gerenciadorunidade.audit;
 
+import com.uninter.gerenciadorunidade.core.input.audit.SaveAuditLogInput;
 import com.uninter.gerenciadorunidade.core.usecase.audit.SaveAuditLogUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
@@ -15,13 +16,13 @@ public class AuditEventListener {
     @Async
     @EventListener
     public void onAuditEvent(AuditEvent event) {
-        saveAuditLogUseCase.execute(
+        saveAuditLogUseCase.execute(new SaveAuditLogInput(
             event.userEmail(),
             event.action(),
             event.entity(),
             event.entityId(),
             event.occurredAt()
-        );
+        ));
     }
 
 }

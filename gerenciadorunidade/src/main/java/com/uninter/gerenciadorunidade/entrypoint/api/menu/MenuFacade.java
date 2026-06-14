@@ -1,5 +1,7 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.menu;
 
+import com.uninter.gerenciadorunidade.core.input.menu.AddProductToMenuInput;
+import com.uninter.gerenciadorunidade.core.input.menu.RemoveProductFromMenuInput;
 import com.uninter.gerenciadorunidade.core.usecase.menu.AddProductToMenuUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.menu.CreateMenuUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.menu.DeleteMenuUseCase;
@@ -39,11 +41,13 @@ public class MenuFacade {
     }
 
     public MenuResponse addProduct(final Long menuId, final AddProductToMenuRequest request) {
-        return MenuResponse.fromDomain(addProductToMenuUseCase.execute(menuId, request.productId()));
+        return MenuResponse.fromDomain(addProductToMenuUseCase.execute(
+            new AddProductToMenuInput(menuId, request.productId())));
     }
 
     public MenuResponse removeProduct(final Long menuId, final Long productId) {
-        return MenuResponse.fromDomain(removeProductFromMenuUseCase.execute(menuId, productId));
+        return MenuResponse.fromDomain(removeProductFromMenuUseCase.execute(
+            new RemoveProductFromMenuInput(menuId, productId)));
     }
 
     public void delete(final Long id) {

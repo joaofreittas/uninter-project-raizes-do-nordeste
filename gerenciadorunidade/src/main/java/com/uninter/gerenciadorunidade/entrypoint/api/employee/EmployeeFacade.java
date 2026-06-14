@@ -1,5 +1,8 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.employee;
 
+import com.uninter.gerenciadorunidade.core.input.employee.AddEvaluationInput;
+import com.uninter.gerenciadorunidade.core.input.employee.CreateEmployeeInput;
+import com.uninter.gerenciadorunidade.core.input.employee.UpdateEmployeeInput;
 import com.uninter.gerenciadorunidade.core.usecase.employee.AddEvaluationUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.employee.CreateEmployeeUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.employee.DeleteEmployeeUseCase;
@@ -28,9 +31,9 @@ public class EmployeeFacade {
     private final DeleteEmployeeUseCase deleteEmployeeUseCase;
 
     public EmployeeResponse create(final CreateEmployeeRequest request) {
-        var domain = createEmployeeUseCase.execute(
+        var domain = createEmployeeUseCase.execute(new CreateEmployeeInput(
             request.unitId(), request.name(), request.address(),
-            request.document(), request.birthDate(), request.type());
+            request.document(), request.birthDate(), request.type()));
         return EmployeeResponse.fromDomain(domain);
     }
 
@@ -43,13 +46,14 @@ public class EmployeeFacade {
     }
 
     public EmployeeResponse update(final Long id, final UpdateEmployeeRequest request) {
-        var domain = updateEmployeeUseCase.execute(id, request.name(), request.address(),
-            request.birthDate(), request.type());
+        var domain = updateEmployeeUseCase.execute(new UpdateEmployeeInput(
+            id, request.name(), request.address(), request.birthDate(), request.type()));
         return EmployeeResponse.fromDomain(domain);
     }
 
     public EvaluationResponse addEvaluation(final Long employeeId, final AddEvaluationRequest request) {
-        var domain = addEvaluationUseCase.execute(employeeId, request.rating(), request.comment());
+        var domain = addEvaluationUseCase.execute(
+            new AddEvaluationInput(employeeId, request.rating(), request.comment()));
         return EvaluationResponse.fromDomain(domain);
     }
 

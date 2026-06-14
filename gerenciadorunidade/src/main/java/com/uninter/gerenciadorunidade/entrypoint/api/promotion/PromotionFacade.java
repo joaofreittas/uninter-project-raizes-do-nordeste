@@ -1,5 +1,7 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.promotion;
 
+import com.uninter.gerenciadorunidade.core.input.promotion.CreatePromotionInput;
+import com.uninter.gerenciadorunidade.core.input.promotion.UpdatePromotionInput;
 import com.uninter.gerenciadorunidade.core.usecase.promotion.CreatePromotionUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.promotion.DeletePromotionUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.promotion.FindAllPromotionsUseCase;
@@ -24,8 +26,8 @@ public class PromotionFacade {
     private final DeletePromotionUseCase deletePromotionUseCase;
 
     public PromotionResponse create(final CreatePromotionRequest request) {
-        var domain = createPromotionUseCase.execute(
-            request.unitId(), request.title(), request.startDate(), request.endDate(), request.reward());
+        var domain = createPromotionUseCase.execute(new CreatePromotionInput(
+            request.unitId(), request.title(), request.startDate(), request.endDate(), request.reward()));
         return PromotionResponse.fromDomain(domain);
     }
 
@@ -38,8 +40,8 @@ public class PromotionFacade {
     }
 
     public PromotionResponse update(final Long id, final UpdatePromotionRequest request) {
-        var domain = updatePromotionUseCase.execute(
-            id, request.title(), request.startDate(), request.endDate(), request.reward());
+        var domain = updatePromotionUseCase.execute(new UpdatePromotionInput(
+            id, request.title(), request.startDate(), request.endDate(), request.reward()));
         return PromotionResponse.fromDomain(domain);
     }
 

@@ -5,10 +5,9 @@ import com.uninter.gerenciadorunidade.core.domain.audit.AuditAction;
 import com.uninter.gerenciadorunidade.core.domain.customer.CustomerDomain;
 import com.uninter.gerenciadorunidade.core.exception.DomainException;
 import com.uninter.gerenciadorunidade.core.gateway.CustomerGateway;
+import com.uninter.gerenciadorunidade.core.input.customer.CreateCustomerInput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -17,18 +16,17 @@ public class CreateCustomerUseCase {
     private final CustomerGateway customerGateway;
 
     @Auditable(action = AuditAction.CREATE)
-    public CustomerDomain execute(final String name, final String document, final String email,
-        final String phone, final LocalDate birthDate,
-        final Boolean lgpdAccepted, final Boolean marketingAccepted) {
-        if (customerGateway.findByDocument(document).isPresent()) {
-            throw new DomainException("Document already registered: " + document);
+    public CustomerDomain execute(final CreateCustomerInput input) {
+        if (customerGateway.findByDocument(input.document()).isPresent()) {
+            throw new DomainException("Document already registered: " + input.document());
         }
-        if (customerGateway.findByEmail(email).isPresent()) {
-            throw new DomainException("Email already registered: " + email);
+        if (customerGateway.findByEmail(input.email()).isPresent()) {
+            throw new DomainException("Email already registered: " + input.email());
         }
 
         return customerGateway.save(
-            CustomerDomain.create(name, document, email, phone, birthDate, lgpdAccepted, marketingAccepted));
+            CustomerDomain.create(input.name(), input.document(), input.email(),
+                input.phone(), input.birthDate(), input.lgpdAccepted(), input.marketingAccepted()));
     }
 
 }
