@@ -1,5 +1,7 @@
 package com.uninter.gerenciadorunidade.entrypoint.api.customer;
 
+import com.uninter.gerenciadorunidade.core.domain.user.Role;
+import com.uninter.gerenciadorunidade.core.input.auth.RegisterUserInput;
 import com.uninter.gerenciadorunidade.core.input.customer.CreateCustomerInput;
 import com.uninter.gerenciadorunidade.core.input.customer.UpdateCustomerInput;
 import com.uninter.gerenciadorunidade.core.usecase.customer.CreateCustomerUseCase;
@@ -7,6 +9,7 @@ import com.uninter.gerenciadorunidade.core.usecase.customer.DeleteCustomerUseCas
 import com.uninter.gerenciadorunidade.core.usecase.customer.FindAllCustomersUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.customer.FindCustomerByIdUseCase;
 import com.uninter.gerenciadorunidade.core.usecase.customer.UpdateCustomerUseCase;
+import com.uninter.gerenciadorunidade.core.usecase.auth.RegisterUserUseCase;
 import com.uninter.gerenciadorunidade.entrypoint.api.customer.dto.CreateCustomerRequest;
 import com.uninter.gerenciadorunidade.entrypoint.api.customer.dto.CustomerResponse;
 import com.uninter.gerenciadorunidade.entrypoint.api.customer.dto.UpdateCustomerRequest;
@@ -24,12 +27,13 @@ public class CustomerFacade {
     private final FindCustomerByIdUseCase findCustomerByIdUseCase;
     private final UpdateCustomerUseCase updateCustomerUseCase;
     private final DeleteCustomerUseCase deleteCustomerUseCase;
+    private final RegisterUserUseCase registerUserUseCase;
 
     public CustomerResponse create(final CreateCustomerRequest request) {
-        var domain = createCustomerUseCase.execute(new CreateCustomerInput(
-            request.name(), request.document(), request.email(), request.phone(),
-            request.birthDate(), request.lgpdAccepted(),
-            request.marketingAccepted() != null ? request.marketingAccepted() : Boolean.FALSE));
+        var domain = createCustomerUseCase.execute(request.toInput());
+
+        registerUserUseCase.execute(new RegisterUserInput(request.name(), request.email(), request.password(), Role.USER));
+
         return CustomerResponse.fromDomain(domain);
     }
 
